@@ -19,8 +19,7 @@ namespace SDuo.EasyAPI.Plugin.Abstract
         {
             string path = resolver.ResolveAssemblyToPath(name);
             if (path != null)
-            {
-                Console.WriteLine($"Loading assembly {path} into the PluginAssemblyLoadContext");
+            {                
                 return LoadFromAssemblyPath(path);
             }
             return null;
@@ -31,7 +30,6 @@ namespace SDuo.EasyAPI.Plugin.Abstract
             string path = resolver.ResolveUnmanagedDllToPath(name);
             if (path != null)
             {
-                Console.WriteLine($"Loading assembly {path} into the HostAssemblyLoadContext");
                 return LoadUnmanagedDllFromPath(path);
             }
             return IntPtr.Zero;
