@@ -11,4 +11,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SDuo.EasyAPI.Plugin.Abstract\SDuo.EasyAPI.Plugin.Abstract.csproj" />
+  </ItemGroup>
+
 </Project>

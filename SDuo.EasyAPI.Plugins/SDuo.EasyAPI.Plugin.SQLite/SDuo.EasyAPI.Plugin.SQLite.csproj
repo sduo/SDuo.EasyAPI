@@ -14,4 +14,8 @@
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\SDuo.EasyAPI.Plugin.Abstract\SDuo.EasyAPI.Plugin.Abstract.csproj" />
+  </ItemGroup>
+
 </Project>
