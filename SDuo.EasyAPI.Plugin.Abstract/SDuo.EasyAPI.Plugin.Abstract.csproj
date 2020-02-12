@@ -1,8 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <!-- 生成包含 Nuget 包 -->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- 生成路径不包含 TargetFramework 值 -->
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <!-- 修改生成路径 -->
+    <OutputPath>$(SolutionDir)bin\$(Configuration)\$(TargetFramework)\$(SolutionName)\plugins\$(AssemblyName)</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
