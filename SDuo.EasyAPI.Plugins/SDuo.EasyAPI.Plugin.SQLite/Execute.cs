@@ -34,20 +34,29 @@ namespace SDuo.EasyAPI.Plugin.SQLite
                 return 1;
             }
 
-            string datasource = action.Attributes[nameof(datasource)].Value;
+            XmlNode sql = action.SelectSingleNode(nameof(sql));
+
+            if (sql == null)
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, nameof(sql));
+                return 2;
+            }
+
+            string datasource = sql.Attributes[nameof(datasource)]?.Value;
             if (string.IsNullOrEmpty(datasource))
             {
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, nameof(datasource));
-                return 2;
+                return 3;
             }
 
-            string sql = action.SelectSingleNode(nameof(sql))?.InnerText;
-            if (string.IsNullOrEmpty(sql))
+            string cmd = sql.InnerText;
+            if (string.IsNullOrEmpty(cmd))
             {
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, nameof(sql));
-                return 3;
+                context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, nameof(cmd));
+                return 4;
             }
 
             Dictionary<string, string> param = new Dictionary<string, string>();
@@ -58,7 +67,7 @@ namespace SDuo.EasyAPI.Plugin.SQLite
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, $"{nameof(param)}:{key}");
-                    return 4;
+                    return 5;
                 }
                 value = WebUtility.UrlDecode(context.Request.Form[key]);
                 if (!string.IsNullOrEmpty(value))
@@ -69,7 +78,7 @@ namespace SDuo.EasyAPI.Plugin.SQLite
 
             using (SQLiteConnection connection = new SQLiteConnection($"data source={datasource}"))
             {
-                data = await connection.ExecuteAsync(sql, param).ConfigureAwait(false);
+                data = await connection.ExecuteAsync(cmd, param).ConfigureAwait(false);
                 callback?.Invoke(data);
                 return 0;
             }
