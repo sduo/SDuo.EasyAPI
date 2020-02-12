@@ -45,13 +45,18 @@ namespace SDuo.EasyAPI.Core
                         context.Response.Headers.Add(X_ERROR_MESSAGE, nameof(action));
                         return;
                     }
-
-                    if (action.StartsWith('/'))
-                    {
-                        action = action.Remove(0,1);
-                    }
                     
-                    action = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "actions", $"{action.Replace('/', Path.DirectorySeparatorChar)}.xml");
+                    if('\\' == Path.DirectorySeparatorChar)
+                    {
+                        action = action.Replace('/', Path.DirectorySeparatorChar);
+                    }
+
+                    if (action.StartsWith(Path.DirectorySeparatorChar))
+                    {
+                        action = action.Remove(0, 1);
+                    }
+
+                    action = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "actions", $"{action}.xml");
 
                     if (!File.Exists(action))
                     {
@@ -128,7 +133,7 @@ namespace SDuo.EasyAPI.Core
                             return;
                         }
 
-                        int result = await instance.ExecuteAsync(context, act, data, x => { data = x; }).ConfigureAwait(false);
+                        int result = await instance.ExecuteAsync(context, act, data, x => { data = x; }).ConfigureAwait(true);
 
                         loader?.Unload();
 
