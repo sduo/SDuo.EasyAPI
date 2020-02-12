@@ -76,7 +76,7 @@ namespace SDuo.EasyAPI.Core
 
                     foreach (XmlNode act in root.ChildNodes)
                     {
-                        string plugin = act.Attributes[nameof(plugin)].Value;
+                        string plugin = act.Attributes[nameof(plugin)]?.Value;
                         if (string.IsNullOrEmpty(plugin))
                         {
                             context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
@@ -84,7 +84,7 @@ namespace SDuo.EasyAPI.Core
                             return;
                         }
 
-                        string invoke = act.Attributes[nameof(invoke)].Value;
+                        string invoke = act.Attributes[nameof(invoke)]?.Value;
                         if (string.IsNullOrEmpty(invoke))
                         {
                             context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
@@ -106,8 +106,8 @@ namespace SDuo.EasyAPI.Core
                             return;
                         }
 
-                        AssemblyLoadContext loader = new AssemblyLoadContext(plugin, true);                        
-                        Assembly assembly = loader.LoadFromAssemblyPath(file);
+                        PluginLoadContext loader = new PluginLoadContext(file);
+                        Assembly assembly = loader.LoadFromAssemblyName(new AssemblyName(plugin));
 
                         if (assembly == null)
                         {
@@ -115,10 +115,11 @@ namespace SDuo.EasyAPI.Core
                             context.Response.Headers.Add(X_ERROR_MESSAGE, plugin);
                             return;
                         }
+                        
 
                         invoke = $"{plugin}.{invoke}";
-
-                        IPlugin instance = assembly.CreateInstance(invoke) as IPlugin;
+                        
+                        IPlugin instance = assembly.CreateInstance(invoke) as IPlugin;                                            
 
                         if (instance == null)
                         {
