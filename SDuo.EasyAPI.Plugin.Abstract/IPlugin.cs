@@ -7,7 +7,7 @@ namespace SDuo.EasyAPI.Plugin.Abstract
 {
     public interface IPlugin
     {
-        public const string NameSpace = "SDUO.EasyAPI.Plugin";
+        public const string NAMESPACE = "SDUO.EasyAPI.Plugin";
         public const string X_PLUGIN_MESSAGE = "X-Plugin-Message";
 
         string Version { get; }
