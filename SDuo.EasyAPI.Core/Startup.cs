@@ -46,7 +46,12 @@ namespace SDuo.EasyAPI.Core
                         return;
                     }
 
-                    action = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "actions", $"{action.Replace('/',Path.DirectorySeparatorChar)}.xml");
+                    if (action.StartsWith('/'))
+                    {
+                        action = action.Remove(0,1);
+                    }
+                    
+                    action = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "actions", $"{action.Replace('/', Path.DirectorySeparatorChar)}.xml");
 
                     if (!File.Exists(action))
                     {
@@ -101,7 +106,7 @@ namespace SDuo.EasyAPI.Core
                             return;
                         }
 
-                        AssemblyLoadContext loader = new AssemblyLoadContext(plugin, true);
+                        AssemblyLoadContext loader = new AssemblyLoadContext(plugin, true);                        
                         Assembly assembly = loader.LoadFromAssemblyPath(file);
 
                         if (assembly == null)
