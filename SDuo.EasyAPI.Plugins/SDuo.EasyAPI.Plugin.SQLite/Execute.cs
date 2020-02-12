@@ -21,6 +21,12 @@ namespace SDuo.EasyAPI.Plugin.SQLite
                 throw new NullReferenceException(nameof(context));
             }
 
+            if(context.Request.Method != HttpMethods.Post)
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return -1;
+            }
+
             if (action == null)
             {
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
