@@ -35,7 +35,7 @@ namespace SDuo.EasyAPI.Core
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/{**action}", async context =>
+                endpoints.Map("/{**action}", async context =>
                 {
                     string action = context.Request.Path;
 
