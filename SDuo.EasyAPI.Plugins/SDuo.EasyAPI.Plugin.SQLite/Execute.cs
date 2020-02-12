@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using System.Xml;
@@ -12,7 +13,7 @@ namespace SDuo.EasyAPI.Plugin.SQLite
 {
     public class Execute : IPlugin
     {
-        public string Version => "0.0.1";
+        public string Version => "0.1.0";
 
         public async Task<int> ExecuteAsync(HttpContext context, XmlNode action, object data, Action<object> callback)
         {
@@ -59,7 +60,7 @@ namespace SDuo.EasyAPI.Plugin.SQLite
                 return 4;
             }
 
-            Dictionary<string, string> param = new Dictionary<string, string>();
+            Dictionary<string, object> param = new Dictionary<string, object>();
             string value = null;
             foreach (string key in context.Request.Form.Keys)
             {
@@ -70,16 +71,14 @@ namespace SDuo.EasyAPI.Plugin.SQLite
                     return 5;
                 }
                 value = WebUtility.UrlDecode(context.Request.Form[key]);
-                if (!string.IsNullOrEmpty(value))
-                {
-                    param.Add(key, value);
-                }
+                param.Add(key, value);
             }
 
-            using (SQLiteConnection connection = new SQLiteConnection($"data source={datasource}"))
+            using (SQLiteConnection connection = new SQLiteConnection(datasource))
             {
-                data = await connection.ExecuteAsync(cmd, param).ConfigureAwait(false);
+                data =await connection.ExecuteAsync(cmd, param).ConfigureAwait(true);
                 callback?.Invoke(data);
+                context.Response.StatusCode = (int)HttpStatusCode.Created;
                 return 0;
             }
         }
