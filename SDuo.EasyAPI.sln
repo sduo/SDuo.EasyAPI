@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDuo.EasyAPI.Core", "SDuo.EasyAPI.Core\SDuo.EasyAPI.Core.csproj", "{584DCEF5-80D1-4CC6-9D3D-BD8DC3710620}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDuo.EasyAPI.Plugin.Abstract", "SDuo.EasyAPI.Plugin.Abstract\SDuo.EasyAPI.Plugin.Abstract.csproj", "{DA631185-9852-4A97-AC48-B10D5E7BA398}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SDuo.EasyAPI.Plugins", "SDuo.EasyAPI.Plugins", "{F97B8C0B-2E04-4BA4-A9E3-AC2A77B92100}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDuo.EasyAPI.Plugin.SQLite", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.SQLite\SDuo.EasyAPI.Plugin.SQLite.csproj", "{E53F1C66-E1D6-4B20-BE1A-A62B57662328}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{584DCEF5-80D1-4CC6-9D3D-BD8DC3710620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{584DCEF5-80D1-4CC6-9D3D-BD8DC3710620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{584DCEF5-80D1-4CC6-9D3D-BD8DC3710620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{584DCEF5-80D1-4CC6-9D3D-BD8DC3710620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA631185-9852-4A97-AC48-B10D5E7BA398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA631185-9852-4A97-AC48-B10D5E7BA398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA631185-9852-4A97-AC48-B10D5E7BA398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA631185-9852-4A97-AC48-B10D5E7BA398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E53F1C66-E1D6-4B20-BE1A-A62B57662328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E53F1C66-E1D6-4B20-BE1A-A62B57662328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E53F1C66-E1D6-4B20-BE1A-A62B57662328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E53F1C66-E1D6-4B20-BE1A-A62B57662328}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E53F1C66-E1D6-4B20-BE1A-A62B57662328} = {F97B8C0B-2E04-4BA4-A9E3-AC2A77B92100}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {716880E9-ADD4-43D8-A893-69C81BCE2235}
+	EndGlobalSection
+EndGlobal
