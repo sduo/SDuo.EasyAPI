@@ -7,7 +7,7 @@
     <!-- 生成路径不包含 TargetFramework 值 -->
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <!-- 修改生成路径 -->
-    <OutputPath>$(SolutionDir)bin\$(Configuration)\$(TargetFramework)\$(SolutionName)\plugins\$(AssemblyName)</OutputPath>
+    <OutputPath>$(SolutionDir)bin\$(Configuration)\$(TargetFramework)\$(SolutionName)</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
