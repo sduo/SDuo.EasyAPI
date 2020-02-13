@@ -21,13 +21,7 @@ namespace SDuo.EasyAPI.Plugin.SQLite
             {
                 throw new NullReferenceException(nameof(context));
             }
-
-            if(context.Request.Method != HttpMethods.Post)
-            {
-                context.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                return -1;
-            }
-
+            
             if (action == null)
             {
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
@@ -62,17 +56,40 @@ namespace SDuo.EasyAPI.Plugin.SQLite
 
             Dictionary<string, object> param = new Dictionary<string, object>();
             string value = null;
-            foreach (string key in context.Request.Form.Keys)
-            {
-                if (param.ContainsKey(key))
-                {
-                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, $"{nameof(param)}:{key}");
-                    return 5;
-                }
-                value = WebUtility.UrlDecode(context.Request.Form[key]);
-                param.Add(key, value);
-            }
+            switch (context.Request.Method)
+            {                
+                case string method when method == HttpMethods.Get:
+                    {
+                        foreach (string key in context.Request.Query.Keys)
+                        {
+                            if (param.ContainsKey(key))
+                            {
+                                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                                context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, $"{nameof(param)}:{key}");
+                                return 5;
+                            }
+                            value = WebUtility.UrlDecode(context.Request.Form[key]);
+                            param.Add(key, value);
+                        }
+                        break;
+                    }
+                case string method when method == HttpMethods.Post:
+                default:
+                    {
+                        foreach (string key in context.Request.Form.Keys)
+                        {
+                            if (param.ContainsKey(key))
+                            {
+                                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                                context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, $"{nameof(param)}:{key}");
+                                return 5;
+                            }
+                            value = WebUtility.UrlDecode(context.Request.Form[key]);
+                            param.Add(key, value);
+                        }
+                        break;
+                    }                
+            }                       
 
             using (SQLiteConnection connection = new SQLiteConnection(datasource))
             {

@@ -58,7 +58,8 @@ namespace SDuo.EasyAPI.Plugin.SQLite
             }
 
             Dictionary<string, object> param = new Dictionary<string, object>();
-            string value = null;            
+            string value = null; 
+
             foreach (string key in context.Request.Query.Keys)
             {
                 if (param.ContainsKey(key))
