@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDuo.EasyAPI.Plugin.Switchy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDuo.EasyAPI.Plugin.Authentication", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.Authentication\SDuo.EasyAPI.Plugin.Authentication.csproj", "{BF93905A-7317-421B-B453-59A94B61DFBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDuo.EasyAPI.Plugin.Kitsunebi", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.Kitsunebi\SDuo.EasyAPI.Plugin.Kitsunebi.csproj", "{FC3D772F-C943-4518-895D-0445B4C3CFB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{BF93905A-7317-421B-B453-59A94B61DFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF93905A-7317-421B-B453-59A94B61DFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF93905A-7317-421B-B453-59A94B61DFBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC3D772F-C943-4518-895D-0445B4C3CFB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC3D772F-C943-4518-895D-0445B4C3CFB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC3D772F-C943-4518-895D-0445B4C3CFB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC3D772F-C943-4518-895D-0445B4C3CFB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{E53F1C66-E1D6-4B20-BE1A-A62B57662328} = {F97B8C0B-2E04-4BA4-A9E3-AC2A77B92100}
 		{C1022AE8-D834-4F5C-820F-2D2980C4BA7A} = {F97B8C0B-2E04-4BA4-A9E3-AC2A77B92100}
 		{BF93905A-7317-421B-B453-59A94B61DFBC} = {F97B8C0B-2E04-4BA4-A9E3-AC2A77B92100}
+		{FC3D772F-C943-4518-895D-0445B4C3CFB4} = {F97B8C0B-2E04-4BA4-A9E3-AC2A77B92100}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {716880E9-ADD4-43D8-A893-69C81BCE2235}
