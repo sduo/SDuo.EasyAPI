@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDuo.EasyAPI.Core", "SDuo.EasyAPI.Core\SDuo.EasyAPI.Core.csproj", "{584DCEF5-80D1-4CC6-9D3D-BD8DC3710620}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDuo.EasyAPI.Core", "SDuo.EasyAPI.Core\SDuo.EasyAPI.Core.csproj", "{584DCEF5-80D1-4CC6-9D3D-BD8DC3710620}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDuo.EasyAPI.Plugin.Abstract", "SDuo.EasyAPI.Plugin.Abstract\SDuo.EasyAPI.Plugin.Abstract.csproj", "{DA631185-9852-4A97-AC48-B10D5E7BA398}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDuo.EasyAPI.Plugin.Abstract", "SDuo.EasyAPI.Plugin.Abstract\SDuo.EasyAPI.Plugin.Abstract.csproj", "{DA631185-9852-4A97-AC48-B10D5E7BA398}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SDuo.EasyAPI.Plugins", "SDuo.EasyAPI.Plugins", "{F97B8C0B-2E04-4BA4-A9E3-AC2A77B92100}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDuo.EasyAPI.Plugin.SQLite", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.SQLite\SDuo.EasyAPI.Plugin.SQLite.csproj", "{E53F1C66-E1D6-4B20-BE1A-A62B57662328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDuo.EasyAPI.Plugin.SQLite", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.SQLite\SDuo.EasyAPI.Plugin.SQLite.csproj", "{E53F1C66-E1D6-4B20-BE1A-A62B57662328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDuo.EasyAPI.Plugin.SwitchyOmega", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.SwitchyOmega\SDuo.EasyAPI.Plugin.SwitchyOmega.csproj", "{C1022AE8-D834-4F5C-820F-2D2980C4BA7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDuo.EasyAPI.Plugin.SwitchyOmega", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.SwitchyOmega\SDuo.EasyAPI.Plugin.SwitchyOmega.csproj", "{C1022AE8-D834-4F5C-820F-2D2980C4BA7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDuo.EasyAPI.Plugin.Authentication", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.Authentication\SDuo.EasyAPI.Plugin.Authentication.csproj", "{BF93905A-7317-421B-B453-59A94B61DFBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{C1022AE8-D834-4F5C-820F-2D2980C4BA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1022AE8-D834-4F5C-820F-2D2980C4BA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1022AE8-D834-4F5C-820F-2D2980C4BA7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF93905A-7317-421B-B453-59A94B61DFBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF93905A-7317-421B-B453-59A94B61DFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF93905A-7317-421B-B453-59A94B61DFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF93905A-7317-421B-B453-59A94B61DFBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E53F1C66-E1D6-4B20-BE1A-A62B57662328} = {F97B8C0B-2E04-4BA4-A9E3-AC2A77B92100}
 		{C1022AE8-D834-4F5C-820F-2D2980C4BA7A} = {F97B8C0B-2E04-4BA4-A9E3-AC2A77B92100}
+		{BF93905A-7317-421B-B453-59A94B61DFBC} = {F97B8C0B-2E04-4BA4-A9E3-AC2A77B92100}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {716880E9-ADD4-43D8-A893-69C81BCE2235}
