@@ -34,26 +34,29 @@ namespace SDuo.EasyAPI.Plugin.Authentication
                 return 2;
             }
 
-            string code = context.Request.Headers[nameof(code)];
+            string authcode = context.Request.Headers[nameof(authcode)];
 
-            if (string.IsNullOrEmpty(code))
+            if (string.IsNullOrEmpty(authcode))
             {
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, nameof(code));
+                context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, nameof(authcode));
                 return 3;
             }
+            
+            XmlNodeList code = action.SelectNodes(nameof(code));
 
-            foreach (XmlNode node in action.ChildNodes)
+            foreach (XmlNode node in code)
             {
                 if (string.IsNullOrEmpty(node.InnerText)) { continue; }
-                if (code.Equals(node.InnerText, StringComparison.OrdinalIgnoreCase))
+                if (string.Equals(authcode, node.InnerText, StringComparison.OrdinalIgnoreCase))
                 {
+                    callback?.Invoke(authcode);
                     return 0;
                 }
             }
 
             context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-            context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, nameof(code));
+            context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, nameof(authcode));
             return 4;
         }
     }
