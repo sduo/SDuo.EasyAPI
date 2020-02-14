@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +27,6 @@ namespace SDuo.EasyAPI.Plugin.Authentication
                 return 1;
             }
 
-
             string methods = action.Attributes[nameof(methods)]?.Value;
 
             if (string.IsNullOrEmpty(methods))
@@ -37,10 +35,15 @@ namespace SDuo.EasyAPI.Plugin.Authentication
                 context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, nameof(methods));
                 return 2;
             }
-            
-            if (methods.Split(',').Any(x => x.Equals(context.Request.Method, StringComparison.OrdinalIgnoreCase)))
+
+            string[] array = methods.Split(',');
+
+            foreach(string method in array)
             {
-                return 0;
+                if(string.Equals(method, context.Request.Method, StringComparison.OrdinalIgnoreCase))
+                {
+                    return 0;
+                }
             }
 
             context.Response.StatusCode = (int)HttpStatusCode.MethodNotAllowed;
