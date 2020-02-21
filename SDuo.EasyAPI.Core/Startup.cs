@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Reflection;
-using System.Runtime.Loader;
-using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,9 +23,37 @@ namespace SDuo.EasyAPI.Core
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (false && env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler(configure =>
+                {
+                    configure.Run(async context =>
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        context.Response.ContentType = "text/plain";
+                        IExceptionHandlerPathFeature feature = context.Features.Get<IExceptionHandlerPathFeature>();
+                        Exception exception = feature?.Error;
+
+                        if (exception != null)
+                        {
+                            await context.Response.WriteAsync("### Exception ###\n");
+                            await context.Response.WriteAsync($"{nameof(Exception.Message)}:{exception.Message}\n");
+                            await context.Response.WriteAsync($"{nameof(Exception.Source)}:{exception.Source}\n");
+                            await context.Response.WriteAsync($"{nameof(Exception.StackTrace)}\n{exception.StackTrace}");
+                            while (exception.InnerException != null)
+                            {
+                                exception = exception.InnerException;
+                                await context.Response.WriteAsync("\n### InnerException ###\n");
+                                await context.Response.WriteAsync($"{nameof(Exception.Message)}:{exception.Message}\n");
+                                await context.Response.WriteAsync($"{nameof(Exception.Source)}:{exception.Source}\n");                                
+                            }
+                        }                        
+                    });
+                });
             }
 
             app.UseRouting();
@@ -45,8 +70,8 @@ namespace SDuo.EasyAPI.Core
                         context.Response.Headers.Add(X_ERROR_MESSAGE, nameof(action));
                         return;
                     }
-                    
-                    if('\\' == Path.DirectorySeparatorChar)
+
+                    if ('\\' == Path.DirectorySeparatorChar)
                     {
                         action = action.Replace('/', Path.DirectorySeparatorChar);
                     }
@@ -120,11 +145,11 @@ namespace SDuo.EasyAPI.Core
                             context.Response.Headers.Add(X_ERROR_MESSAGE, plugin);
                             return;
                         }
-                        
+
 
                         invoke = $"{plugin}.{invoke}";
-                        
-                        IPlugin instance = assembly.CreateInstance(invoke) as IPlugin;                                            
+
+                        IPlugin instance = assembly.CreateInstance(invoke) as IPlugin;
 
                         if (instance == null)
                         {

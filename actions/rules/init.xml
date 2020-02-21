@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<actions>
+  <action plugin="Authentication" invoke="Method" methods="post" />
+  <action plugin="Authentication" invoke="AuthCode">
+    <code><![CDATA[E6D7E796-4C15-4B03-B1FA-C7745F3266DA]]></code>
+  </action>
+  <action plugin="SQLite" invoke="Execute">
+    <sql datasource="data source=rules.sqlite">
+      <![CDATA[CREATE TABLE [Rules] ([Rule] TEXT PRIMARY KEY,[Type] INTEGER NOT NULL DEFAULT 0,[DNS] INTEGER NOT NULL DEFAULT 0, [Note] TEXT)]]>
+    </sql>
+  </action>
+</actions>

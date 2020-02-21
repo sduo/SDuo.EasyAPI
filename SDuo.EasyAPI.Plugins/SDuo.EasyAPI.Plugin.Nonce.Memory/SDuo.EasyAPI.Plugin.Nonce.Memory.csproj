@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <!-- 生成包含 Nuget 包 -->
-    <!--<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>-->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <!-- 生成路径不包含 TargetFramework 值 -->
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <!-- 修改生成路径 -->
@@ -11,11 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.2" />
   </ItemGroup>
 
   <ItemGroup>

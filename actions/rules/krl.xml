@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<actions>  
+    <action plugin="Authentication" invoke="Method" methods="get" />
+    <action plugin="SQLite" invoke="Query">
+        <sql datasource="data source=rules.sqlite">
+        <![CDATA[SELECT [Rule],[Type],[DNS],[Note] FROM [Rules]]]>
+        </sql>
+    </action>
+    <action plugin="Kitsunebi" invoke="RuleList" >
+
+    </action>
+</actions>
