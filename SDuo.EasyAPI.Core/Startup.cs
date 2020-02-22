@@ -49,7 +49,7 @@ namespace SDuo.EasyAPI.Core
                                 exception = exception.InnerException;
                                 await context.Response.WriteAsync("\n### InnerException ###\n");
                                 await context.Response.WriteAsync($"{nameof(Exception.Message)}:{exception.Message}\n");
-                                await context.Response.WriteAsync($"{nameof(Exception.Source)}:{exception.Source}\n");                                
+                                await context.Response.WriteAsync($"{nameof(Exception.Source)}:{exception.Source}");                                
                             }
                         }                        
                     });
@@ -81,7 +81,7 @@ namespace SDuo.EasyAPI.Core
                         action = action.Remove(0, 1);
                     }
 
-                    action = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "actions", $"{action}.xml");
+                    action = Path.Combine(AppContext.BaseDirectory, "actions", $"{action}.xml");
 
                     if (!File.Exists(action))
                     {
