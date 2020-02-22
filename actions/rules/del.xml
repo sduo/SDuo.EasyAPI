@@ -6,7 +6,8 @@
   </action>
   <action plugin="SQLite" invoke="Execute">
     <sql datasource="data source=rules.sqlite">
-      <![CDATA[CREATE TABLE [Rules] ([Rule] TEXT PRIMARY KEY,[Type] INTEGER NOT NULL DEFAULT 0,[DNS] INTEGER NOT NULL DEFAULT 0)]]>
+      <![CDATA[DELETE FROM [Rules] WHERE [Rule]=@Rule]]>
     </sql>
+    <param name="Rule" from="body" />
   </action>
 </actions>

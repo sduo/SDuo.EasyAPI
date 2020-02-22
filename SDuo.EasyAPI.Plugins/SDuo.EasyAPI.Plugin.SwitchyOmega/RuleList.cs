@@ -72,24 +72,18 @@ namespace SDuo.EasyAPI.Plugin.SwitchyOmega
                     long? type = row[nameof(type)] as long?;
                     switch (type)
                     {
-                        case 1:
+                        case 200:
+                        case 210:
+                            {
+                                await context.Response.WriteAsync($"*.{rule}\n");
+                                break;
+                            }
+                        case 201:
+                        case 211:
                             {
                                 await context.Response.WriteAsync($"{rule}\n");
                                 break;
-                            }
-                        case 0:
-                        default:
-                            {
-                                if (rule.StartsWith("*."))
-                                {
-                                    await context.Response.WriteAsync($"{rule}\n");
-                                }
-                                else
-                                {
-                                    await context.Response.WriteAsync($"*.{rule}\n");
-                                }
-                                break;
-                            }
+                            }                        
                     }                    
                 }
 

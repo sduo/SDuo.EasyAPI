@@ -58,34 +58,38 @@ namespace SDuo.EasyAPI.Plugin.SQLite
             }
 
             Dictionary<string, object> param = new Dictionary<string, object>();
-            string value = null; 
 
-            foreach (string key in context.Request.Query.Keys)
+            XmlNodeList args = action.SelectNodes(nameof(param));
+
+            foreach(XmlNode arg in args)
             {
-                if (param.ContainsKey(key))
+                string name = arg.Attributes[nameof(name)]?.Value;
+
+                if (string.IsNullOrEmpty(name))
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, $"{nameof(param)}:{key}");
+                    context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, nameof(param));
                     return 5;
                 }
-                value = WebUtility.UrlDecode(context.Request.Form[key]);
-                param.Add(key, value);
-            }
 
-            if (context.Request.Method == HttpMethods.Post)
-            {
-                foreach (string key in context.Request.Form.Keys)
+                if (param.ContainsKey(name))
                 {
-                    if (param.ContainsKey(key))
-                    {
-                        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, $"{nameof(param)}:{key}");
-                        return 5;
-                    }
-                    value = WebUtility.UrlDecode(context.Request.Form[key]);
-                    param.Add(key, value);
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    context.Response.Headers.Add(IPlugin.X_PLUGIN_MESSAGE, name);
+                    return 6;
                 }
-            }            
+
+                string from = arg.Attributes[nameof(from)]?.Value;
+
+                if (string.Equals("body", from, StringComparison.OrdinalIgnoreCase))
+                {
+                    param.Add(name, WebUtility.UrlDecode(context.Request.Form[name]));
+                }
+                else if (string.Equals("query", from, StringComparison.OrdinalIgnoreCase))
+                {
+                    param.Add(name, WebUtility.UrlDecode(context.Request.Query[name]));
+                }
+            }
 
             using (SQLiteConnection connection = new SQLiteConnection(datasource))
             using (DbDataReader reader = await connection.ExecuteReaderAsync(cmd, param).ConfigureAwait(true))

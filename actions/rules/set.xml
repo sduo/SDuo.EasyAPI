@@ -6,7 +6,10 @@
   </action>
   <action plugin="SQLite" invoke="Execute">
     <sql datasource="data source=rules.sqlite">
-      <![CDATA[INSERT OR REPLACE INTO [Rules] ([Rule],[Type],[DNS],[Note]) VALUES (@Rule, @Type, @DNS, @Note)]]>
+      <![CDATA[INSERT OR REPLACE INTO [Rules] ([Rule],[Type],[DNS]) VALUES (@Rule, @Type, @DNS)]]>
     </sql>
+    <param name="Rule" from="body" />
+    <param name="Type" from="body" />
+    <param name="DNS" from="body" />
   </action>
 </actions>

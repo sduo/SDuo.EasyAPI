@@ -17,9 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDuo.EasyAPI.Plugin.Authent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDuo.EasyAPI.Plugin.Kitsunebi", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.Kitsunebi\SDuo.EasyAPI.Plugin.Kitsunebi.csproj", "{FC3D772F-C943-4518-895D-0445B4C3CFB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDuo.EasyAPI.Plugin.Nonce.Memory", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.Nonce.Memory\SDuo.EasyAPI.Plugin.Nonce.Memory.csproj", "{22D069E9-779F-4DAF-9127-E41B88FB501D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDuo.EasyAPI.Plugin.Nonce.Memory", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.Nonce.Memory\SDuo.EasyAPI.Plugin.Nonce.Memory.csproj", "{22D069E9-779F-4DAF-9127-E41B88FB501D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDuo.EasyAPI.Plugin.RateLimit.Memory", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.RateLimit.Memory\SDuo.EasyAPI.Plugin.RateLimit.Memory.csproj", "{4CD4C40B-DF67-49EA-81F7-3A38A1C9ADEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDuo.EasyAPI.Plugin.RateLimit.Memory", "SDuo.EasyAPI.Plugins\SDuo.EasyAPI.Plugin.RateLimit.Memory\SDuo.EasyAPI.Plugin.RateLimit.Memory.csproj", "{4CD4C40B-DF67-49EA-81F7-3A38A1C9ADEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
